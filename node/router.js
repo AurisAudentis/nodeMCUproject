@@ -43,8 +43,8 @@ router.get("/:id/message", function(req, res){
 //initializes the node module, and saves an instance both in memory and database
 router.post("/:id", function(req, res){
     console.log("Post request from:" + req.params.id);
-    console.log("Post body:" + req.body.id + req.body.ipaddress);
-    let instance = new nodeUnit(req.body.id, req.body.ipaddress);
+    console.log("Post body:" + req.body.id + req.body.surrounding);
+    let instance = new nodeUnit(req.body.id, req.body.surrounding);
    // connectedNodes.push(instance);
     res.send("acknowledged");
     datab.saveMCUUnit(instance);

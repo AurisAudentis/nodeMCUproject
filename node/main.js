@@ -9,6 +9,7 @@ connectedNodes = [];
 app.use(bodyparser.json());
 //This routes the traffic to router.js
 app.use("/nodeDEV", router);
+app.use("/node", router);
 
 
 function checkNonResponding(){

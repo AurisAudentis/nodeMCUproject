@@ -1,7 +1,7 @@
-module.exports = function(id, ipaddress){
+module.exports = function(id, array){
         return {
             "id": id,
-            "ipaddress": ipaddress,
+            "surrounding": array,
             "lastcall": Date.now()
         }
     };
