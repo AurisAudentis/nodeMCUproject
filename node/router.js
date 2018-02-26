@@ -15,7 +15,7 @@ router.get("/id", function (req, res){
 
 //This is for message post requests to the server
 router.post("/:id/message", function(req, res){
-    sendMessage(req.params.id, req.body.id, req.body.message);
+    datab.sendMessage(req.params.id, req.body.id, req.body.message);
     res.send("acknowledged");
 });
 
@@ -45,30 +45,9 @@ router.post("/:id", function(req, res){
     console.log("Post request from:" + req.params.id);
     console.log("Post body:" + req.body.id + req.body.ipaddress);
     let instance = new nodeUnit(req.body.id, req.body.ipaddress);
-    connectedNodes.push(instance);
+   // connectedNodes.push(instance);
     res.send("acknowledged");
-    saveMCUUnit(instance);
+    datab.saveMCUUnit(instance);
 });
-
-
-
-
-//saves a unit to db
-
-function saveMessageUnit(obj){
-    let unit = new datab.schemaMessage(obj);
-    unit.save();
-}
-
-function saveMCUUnit(obj){
-    let unit = new unitModel(obj);
-    unit.save();
-}
-
-function sendMessage(fromid, toid, message){
-    let instance = new messageUnit(fromid, toid, message);
-    console.log(instance);
-    saveMessageUnit(instance); //Saves the message to db for read.
-}
 
 module.exports = router;
