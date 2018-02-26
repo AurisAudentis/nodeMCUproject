@@ -33,6 +33,7 @@ void setup() {
 
   Serial.println("started"); //output "started" to serial communication
   //This sets up the wifi connection.
+  delay(600);
   wifiSetup();
 
   //This sets up the listening ports on the pins.
@@ -184,13 +185,13 @@ void wifiSetup(){
 //This sends all relevant info to the server for registery
   void declareToServ(){
     HTTPClient http;
-    char buffer [45];
+    char buffer [55];
     sprintf(buffer, "http://maxiemgeldhof.com/node/%d", id);
     http.begin(buffer);
 
     http.addHeader("Content-Type", "application/json");
     Serial.println(WiFi.localIP());
-    sprintf(buffer, "{\"id\":%d, \"ipaddress\":\"%s\"}", id, WiFi.localIP().toString().c_str());
+    sprintf(buffer, "{\"id\":%d, \"surrounding\":[%d,%d,%d,%d,%d,%d,%d,%d]}", id, idNumber[0],idNumber[1],idNumber[2],idNumber[3],idNumber[4],idNumber[5],idNumber[6],idNumber[7]);
     int httpCode = http.POST(buffer);
     Serial.println(buffer);
   Serial.println(http.getString());
