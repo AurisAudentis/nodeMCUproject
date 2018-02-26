@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
  
-const char* ssid = "telenet-41E70";
-const char* password = "bywJEv1FdXRT";
+const char* ssid = "OpenWifi";
+const char* password = "discreteA";
 int id = 0;
  
 void setup() {
