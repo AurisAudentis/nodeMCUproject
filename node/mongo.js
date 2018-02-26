@@ -19,7 +19,4 @@ db.once('open', function(){
 
 exports.schemaUnit = unitModel;
 exports.schemaMessage = messageModel;
-exports.saveMCUUnit=(function saveMCUUnit(obj){
-    let unit = new unitModel(obj);
-    unit.save();
-});
+

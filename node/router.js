@@ -47,7 +47,7 @@ router.post("/:id", function(req, res){
     let instance = new nodeUnit(req.body.id, req.body.ipaddress);
     connectedNodes.push(instance);
     res.send("acknowledged");
-    datab.saveMCUUnit(instance);
+    saveMCUUnit(instance);
 });
 
 
@@ -59,4 +59,16 @@ function saveMessageUnit(obj){
     let unit = new datab.schemaMessage(obj);
     unit.save();
 }
+
+function saveMCUUnit(obj){
+    let unit = new unitModel(obj);
+    unit.save();
+}
+
+function sendMessage(fromid, toid, message){
+    let instance = new messageUnit(fromid, toid, message);
+    console.log(instance);
+    saveMessageUnit(instance); //Saves the message to db for read.
+}
+
 module.exports = router;
