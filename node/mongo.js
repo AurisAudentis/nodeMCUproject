@@ -30,10 +30,10 @@ exports.sendMessage=function (fromid, toid, message){
     let instance = new messageUnit(fromid, toid, message);
     console.log(instance);
     saveMessageUnit(instance); //Saves the message to db for read.
-}
+};
 
 exports.saveMCUUnit = function saveMCUUnit(obj){
     let unit = new unitModel(obj);
     unit.save();
-}
+};
 

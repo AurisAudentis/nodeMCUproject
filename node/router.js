@@ -50,4 +50,10 @@ router.post("/:id", function(req, res){
     datab.saveMCUUnit(instance);
 });
 
+router.get("/", function(req, res){
+   datab.schemaUnit.find({}, function(err, units){
+       console.log(units);
+       res.send(units);
+   });
+});
 module.exports = router;
