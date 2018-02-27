@@ -29,7 +29,7 @@ int id = 234;
 void setup() {
 
   Serial.begin(9600);   //init serial communication to arduino ide with baud rate 9600
-  pinMode(interruptPin[0], INPUT); //set pin mode to input for interruptPin (13/D7)
+  pinMode(OutPin, OUTPUT); //set pin mode to input for interruptPin (13/D7)
 
   Serial.println("started"); //output "started" to serial communication
   //This sets up the wifi connection.
@@ -236,6 +236,8 @@ void wifiSetup(){
 }
 
 void sendDigit(int digit) {
+  Serial.print("Sending digits: ");
+  Serial.println(digit);
   for (int i = 0; i < digit; i++) {
     sendOne();
   }
@@ -243,6 +245,8 @@ void sendDigit(int digit) {
 }
 
 void sendBit(int toSend) {
+  Serial.print("Sending: ");
+  Serial.println(toSend);
   for (int j = 7; j >= 0; j--) {
     if (toSend < pow(2, j))
     {
