@@ -40,4 +40,4 @@ function sendMessage(fromid, toid, message){
 
 
 //Booting server
-app.listen(27030, () => console.log('Listening.'));
+app.listen(8080, () => console.log('Listening.'));
