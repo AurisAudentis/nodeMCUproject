@@ -34,7 +34,7 @@ void setup() {
   Serial.println("started"); //output "started" to serial communication
   //This sets up the wifi connection.
   delay(600);
-  wifiSetup();
+
 
   //This sets up the listening ports on the pins.
   attachInterrupt(digitalPinToInterrupt(interruptPin[0]), callHandleInterrupt_01, FALLING); //call function "handleInterrupt" when the voltage at interruptPin approaches 0 after having been high
@@ -46,7 +46,8 @@ void setup() {
   /*attachInterrupt(digitalPinToInterrupt(interruptPin7), callHandleInterrupt_07, FALLING); //call function "handleInterrupt" when the voltage at interruptPin approaches 0 after having been high
   attachInterrupt(digitalPinToInterrupt(interruptPin8), callHandleInterrupt_08, FALLING); //call function "handleInterrupt" when the voltage at interruptPin approaches 0 after having been high
 */
-  
+  delay(600);
+    wifiSetup();
 }
 
 
@@ -191,7 +192,7 @@ void wifiSetup(){
 
     http.addHeader("Content-Type", "application/json");
     Serial.println(WiFi.localIP());
-    sprintf(buffer, "{\"id\":%d, \"surrounding\":[%d,%d,%d,%d,%d,%d,%d,%d]}", id, idNumber[0],idNumber[1],idNumber[2],idNumber[3],idNumber[4],idNumber[5],idNumber[6],idNumber[7]);
+    sprintf(buffer, "{\"id\":%d, \"surrounding\":[ %d,%d,%d,%d,%d,%d,%d,%d ]}", id, idNumber[0],idNumber[1],idNumber[2],idNumber[3],idNumber[4],idNumber[5],idNumber[6],idNumber[7]);
     int httpCode = http.POST(buffer);
     Serial.println(buffer);
   Serial.println(http.getString());
@@ -251,8 +252,7 @@ void sendBit(int toSend) {
       sendDigit(2);
       toSend -= pow(2, j);
     }
-  Serial.println(j);
-  Serial.println(toSend);
+
   }
   delay(longDelay);
   sendDigit(10);
