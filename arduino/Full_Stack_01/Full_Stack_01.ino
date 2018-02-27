@@ -55,7 +55,8 @@ void loop() {
 
   getMessages();
   sendBit(id);
-  delay(400);
+  delay(4000);
+  declareToServ();
 }
 
 void callHandleInterrupt_01 ()

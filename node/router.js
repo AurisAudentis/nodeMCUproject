@@ -45,9 +45,20 @@ router.post("/:id", function(req, res){
     console.log("Post request from:" + req.params.id);
     console.log("Post body:" + req.body.id + req.body.surrounding);
     let instance = new nodeUnit(req.body.id, req.body.surrounding);
-   // connectedNodes.push(instance);
-    res.send("acknowledged");
-    datab.saveMCUUnit(instance);
+    datab.schemaUnit.findOne({"id":req.params.id}, function(err, unit){
+
+        //This responds the message if one, statuscode 204 if none
+        if (unit != null){
+
+            //this removes the isread flag, so it won't come up another time
+            unit.surrounding = req.body.surrounding;
+            unit.save();
+            //saves the new isread state
+        } else {
+            datab.saveMCUUnit(instance);
+        }
+        res.send("acknowledged");
+    });
 });
 
 router.get("/", function(req, res){
