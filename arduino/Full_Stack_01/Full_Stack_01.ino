@@ -55,8 +55,14 @@ void loop() {
 
   getMessages();
   sendBit(id);
-  delay(4000);
+  for (int i; i<8; i++){
+    if(previousTime[i] > millis() + 10000){
+      sendMessage("disconnect " + idNumber[i], 0);
+      idNumber[i] = 0;
+      }
+    }
   declareToServ();
+  
 }
 
 void callHandleInterrupt_01 ()

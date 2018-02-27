@@ -12,6 +12,8 @@ app.use("/nodeDEV", router);
 app.use("/node", router);
 
 
+setInterval(readServerMessages, 3000);
+
 function checkNonResponding(){
     connectedNodes.forEach(function(item){
         if(item.lastcall > TIMEOUT){
@@ -25,6 +27,10 @@ function checkNonResponding(){
 function readServerMessages(){
     datab.schemaMessage.find({"toid":0, "isread":false}, function(err, messages) {
             messages.forEach(message, function(){
+                if(message.message.startsWith("disconnected")){
+                    toremoveid = parseInt(message.message.replace(/[^0-9]/,''));
+                    datab.schemaUnit.find({"id":toremoveid}).remove();
+                }
 
             });
     });
