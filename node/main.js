@@ -25,9 +25,13 @@ function checkNonResponding(){
 
 
 function readServerMessages(){
+
     datab.schemaMessage.find({"toid":0, "isread":false}, function(err, messages) {
+        console.log("Reading messages");
+        console.log(messages);
             messages.forEach(message, function(){
                 if(message.message.startsWith("disconnected")){
+                    console.log("cleaning up: " + message.message);
                     toremoveid = parseInt(message.message.replace(/[^0-9]/,''));
                     datab.schemaUnit.find({"id":toremoveid}).remove();
                 }

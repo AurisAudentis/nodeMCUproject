@@ -56,7 +56,7 @@ void loop() {
   getMessages();
   sendBit(id);
   for (int i; i<8; i++){
-    if(previousTime[i] > millis() + 10000){
+    if(previousTime[i] > millis() - 10000){
       sendMessage("disconnect " + idNumber[i], 0);
       idNumber[i] = 0;
       }
