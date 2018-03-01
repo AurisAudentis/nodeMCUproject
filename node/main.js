@@ -34,7 +34,8 @@ function readServerMessages(){
                     toremoveid = (message.message.replace(/[^0-9]/g,''));
                     //console.log("cleaning up: " + parseInt(toremoveid));
                     (datab.schemaUnit.findOne({"id":parseInt(toremoveid.trim())}, function(err, unit){
-                        unit.remove();
+                        if(!err){
+                        unit.remove();}
                     }))
                 }
                 message.isread = true;
