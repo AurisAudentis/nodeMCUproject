@@ -2,6 +2,7 @@ const app = require('express')();
 const bodyparser = require("body-parser");
 const router = require("./router.js");
 const TIMEOUT = 30000; //Checks if the last call was >30 s ago.
+const datab = require("./mongo.js");
 connectedNodes = [];
 
 
@@ -13,7 +14,7 @@ app.use("/node", router);
 
 
 setInterval(readServerMessages, 3000);
-
+/*
 function checkNonResponding(){
     connectedNodes.forEach(function(item){
         if(item.lastcall > TIMEOUT){
@@ -22,20 +23,22 @@ function checkNonResponding(){
         }
     });
 }
-
+*/
 
 function readServerMessages(){
-
     datab.schemaMessage.find({"toid":0, "isread":false}, function(err, messages) {
-        console.log("Reading messages");
-        console.log(messages);
-            messages.forEach(message, function(){
+       // console.log("Reading messages");
+        //console.log(messages);
+            messages.forEach((message) => {
                 if(message.message.startsWith("disconnected")){
-                    console.log("cleaning up: " + message.message);
-                    toremoveid = parseInt(message.message.replace(/[^0-9]/,''));
-                    datab.schemaUnit.find({"id":toremoveid}).remove();
+                    toremoveid = (message.message.replace(/[^0-9]/g,''));
+                    //console.log("cleaning up: " + parseInt(toremoveid));
+                    (datab.schemaUnit.findOne({"id":parseInt(toremoveid.trim())}, function(err, unit){
+                        unit.remove();
+                    }))
                 }
-
+                message.isread = true;
+                message.save();
             });
     });
 }

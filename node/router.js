@@ -4,15 +4,15 @@ let currentId = 1;
 const nodeUnit = require("./NodeUnit.js");
 const messageUnit = require("./MessageUnit.js");
 const datab = require("./mongo.js");
-
+/*
 //This assigns a temporary id
 router.get("/id", function (req, res){
     res.send("" + currentId);
-    console.log("distributed id: " + currentId);
+   // console.log("distributed id: " + currentId);
     currentId +=1;
 });
 
-
+*/
 //This is for message post requests to the server
 router.post("/:id/message", function(req, res){
     datab.sendMessage(req.params.id, req.body.id, req.body.message);
@@ -42,8 +42,8 @@ router.get("/:id/message", function(req, res){
 
 //initializes the node module, and saves an instance both in memory and database
 router.post("/:id", function(req, res){
-    console.log("Post request from:" + req.params.id);
-    console.log("Post body:" + req.body.id + req.body.surrounding);
+    //console.log("Post request from:" + req.params.id);
+   // console.log("Post body:" + req.body.id + req.body.surrounding);
     let instance = new nodeUnit(req.body.id, req.body.surrounding);
     datab.schemaUnit.findOne({"id":req.params.id}, function(err, unit){
 
@@ -63,7 +63,7 @@ router.post("/:id", function(req, res){
 
 router.get("/", function(req, res){
    datab.schemaUnit.find({}, function(err, units){
-       console.log(units);
+       //console.log(units);
        res.send(units);
    });
 });
