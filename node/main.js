@@ -3,9 +3,10 @@ const bodyparser = require("body-parser");
 const router = require("./router.js");
 const TIMEOUT = 30000; //Checks if the last call was >30 s ago.
 const datab = require("./mongo.js");
+const cors = require("cors");
 connectedNodes = [];
 
-
+app.use(cors());
 //This makes the incoming post requests readable
 app.use(bodyparser.json());
 //This routes the traffic to router.js
