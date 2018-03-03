@@ -72,8 +72,8 @@ router.get("/raw", (req, res) => {
     datab.schemaUnit.find({}, (err, units)=> {
        let answer = "";
         units.forEach((unit) => {
-          answer += "id: " + unit.id;
-          answer += "surrounding: " + unit.surrounding + ";"
+          answer +=  unit.id + ":";
+          answer +=  unit.surrounding + ";"
        });
         res.send(answer);
 

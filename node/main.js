@@ -15,6 +15,8 @@ app.use("/node", router);
 
 
 setInterval(readServerMessages, 3000);
+
+
 /*
 function checkNonResponding(){
     connectedNodes.forEach(function(item){
@@ -39,10 +41,20 @@ function readServerMessages(){
                         unit.remove()
                         ;}
                     }))
+                } else if(message.message.startsWith("reset")){
+                    reset();
                 }
                 message.isread = true;
                 message.save();
             });
+    });
+}
+
+function reset(){
+    datab.schemaUnit.find({}, (err, units) => {
+       units.forEach((unit) => {
+           unit.remove();
+       })
     });
 }
 

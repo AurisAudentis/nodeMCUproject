@@ -24,7 +24,7 @@ int tempIDNumber[] = {0,0,0,0,0,0,0,0};
 
 //producer
 int OutPin = D1;
-int id = 234;
+int id = 110;
 
 void setup() {
 
@@ -55,8 +55,9 @@ void loop() {
 
   getMessages();
   sendBit(id);
+  delay(500);
   for (int i; i<8; i++){
-    if(previousTime[i] > millis() - 10000){
+    if(previousTime[i] < millis() - 1000 && idNumber[i] != 0){
       sendMessage("disconnect " + idNumber[i], 0);
       idNumber[i] = 0;
       }
@@ -111,11 +112,11 @@ void handleInterrupt(int pinID) {  //method called upon interrupt  (when interru
 
   if (diff >= longDelay) { //if this message comes later then longDelay milliseconds
     if (oneCounter[pinID] == 10) {
-      binaryCounter[pinID] = 7;
+      binaryCounter[pinID] = 8;
       tempIDNumber[pinID] = 0;
     } else if (oneCounter[pinID] == 2) {
-      tempIDNumber[pinID] += pow(2, binaryCounter[pinID]);
       binaryCounter[pinID]--;
+      tempIDNumber[pinID] += pow(2, binaryCounter[pinID]);
     } else if (oneCounter[pinID] == 1) {
       binaryCounter[pinID]--;
     }
@@ -130,7 +131,7 @@ void handleInterrupt(int pinID) {  //method called upon interrupt  (when interru
       Serial.println(idNumber[pinID]);
 
 
-      binaryCounter[pinID] = 7;
+      binaryCounter[pinID] = 8;
       tempIDNumber[pinID] = 0;
     }
 
