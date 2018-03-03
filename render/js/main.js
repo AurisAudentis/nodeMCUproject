@@ -14,8 +14,8 @@ function draw() {
     background(115);
     ambientMaterial(255);
     ambientLight(255);
-   // rotateY(angle);
-    rotateX(angle);
+    //rotateY(0.8);
+   // rotateX(0.1);
     units.forEach((unit) => {
         push();
         translate(unit.x*80, unit.y*80, unit.z*80);
@@ -23,16 +23,18 @@ function draw() {
         pop();
     });
 
-    angle += 0.005;
+    //angle += 0.005;
 }
 
 
 function getResources(){
     $.getJSON("http://maxiemgeldhof.com/node", (data) => {
-       units = data.map(obj => {
+
+       units = data.map((obj) => {
            obj.x=null;
            obj.y=null;
            obj.z=null;
+
            obj.sharePos = function(x,y,z){
                if(this.x === null) {
                    this.x = x;

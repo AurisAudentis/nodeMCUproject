@@ -9,7 +9,7 @@ const char* password = "discreteA";
 
 
 //consumer
-const byte interruptPin[] = {13,12,14,2,0,4,15,16}; //D7
+const byte interruptPin[] = {13,12,14,2,0,4,15,16}; //D7 - D6 - D5- D4 - D3 - D2 - D8 - D0
 
 int numberOfInterrupts = 0;
 unsigned long now;
@@ -24,7 +24,7 @@ int tempIDNumber[] = {0,0,0,0,0,0,0,0};
 
 //producer
 int OutPin = D1;
-int id = 110;
+int id = 210;
 
 void setup() {
 
@@ -43,9 +43,9 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(interruptPin[3]), callHandleInterrupt_04, FALLING); //call function "handleInterrupt" when the voltage at interruptPin approaches 0 after having been high
   attachInterrupt(digitalPinToInterrupt(interruptPin[4]), callHandleInterrupt_05, FALLING); //call function "handleInterrupt" when the voltage at interruptPin approaches 0 after having been high
   attachInterrupt(digitalPinToInterrupt(interruptPin[5]), callHandleInterrupt_06, FALLING); //call function "handleInterrupt" when the voltage at interruptPin approaches 0 after having been high  
-  /*attachInterrupt(digitalPinToInterrupt(interruptPin7), callHandleInterrupt_07, FALLING); //call function "handleInterrupt" when the voltage at interruptPin approaches 0 after having been high
-  attachInterrupt(digitalPinToInterrupt(interruptPin8), callHandleInterrupt_08, FALLING); //call function "handleInterrupt" when the voltage at interruptPin approaches 0 after having been high
-*/
+  attachInterrupt(digitalPinToInterrupt(interruptPin[6]), callHandleInterrupt_07, FALLING); //call function "handleInterrupt" when the voltage at interruptPin approaches 0 after having been high
+  attachInterrupt(digitalPinToInterrupt(interruptPin[7]), callHandleInterrupt_08, FALLING); //call function "handleInterrupt" when the voltage at interruptPin approaches 0 after having been high
+
   delay(600);
     wifiSetup();
 }
@@ -90,7 +90,7 @@ void callHandleInterrupt_06 ()
 {
   handleInterrupt(6);
 }
-/*
+
 void callHandleInterrupt_07 ()
 {
   handleInterrupt(7);
@@ -98,7 +98,7 @@ void callHandleInterrupt_07 ()
 void callHandleInterrupt_08 ()
 {
   handleInterrupt(8);
-} */
+} 
 
 
 void handleInterrupt(int pinID) {  //method called upon interrupt  (when interruptPin falls)
