@@ -1,6 +1,11 @@
 let units = [];
 let angle = .05;
+distanceX = [0.,40.,40.,0.,0.,-40.,-40.,0.];
+distanceY = [40.,0.,0.,40.,-40.,0.,0.,-40.];
+distanceZ = [28.284271,28.284271,-28.284271,-28.284271,28.284271,28.284271,-28.284271,-28.284271];
 
+
+window.setInterval(getResources, 1000);
 
 function setup() {
    createCanvas($(window).width(), $(window).height(), WEBGL);
@@ -9,21 +14,21 @@ function setup() {
 }
 
 function draw() {
-    getResources();
+
     clear();
     background(115);
     ambientMaterial(255);
     ambientLight(255);
-    //rotateY(0.8);
-   // rotateX(0.1);
+    rotateY(angle);
+   // rotateX(angle);
     units.forEach((unit) => {
         push();
-        translate(unit.x*80, unit.y*80, unit.z*80);
+        translate(unit.x*1.5, unit.y*1.5, unit.z*1.5);
         sphere(40);
         pop();
     });
 
-    //angle += 0.005;
+    angle += 0.005;
 }
 
 
@@ -42,10 +47,10 @@ function getResources(){
                    this.z = z;
                    this.surrounding.forEach((id, index) => {
                        if (id !== 0) {
-                           this.array = [0,0,0,0,0,0,0,0];
+                           this.array = [distanceX[index], distanceY[index], distanceZ[index]];
                           // console.log(id, index,this.array);
                            this.array[index] += 1;
-                           getObjByID(id).sharePos(this.x + this.array[3] - this.array[2], this.y + this.array[4] - this.array[5], this.z + this.array[0] - this.array[1])
+                           getObjByID(id).sharePos(this.x + this.array[0], this.y + this.array[1], this.z + this.array[2])
                        }
                    });
                }
