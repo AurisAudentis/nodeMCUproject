@@ -83,5 +83,6 @@ router.get("/raw", (req, res) => {
 
 router.get("/reset", (req, res) => {
    datab.reset();
+   res.send("acknowledged");
 });
 module.exports = router;
