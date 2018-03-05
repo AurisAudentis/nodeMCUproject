@@ -37,3 +37,10 @@ exports.saveMCUUnit = function saveMCUUnit(obj){
     unit.save();
 };
 
+exports.reset = function reset(){
+    unitModel.find({}, (err, units) => {
+        units.forEach((unit) => {
+            unit.remove();
+        })
+    });
+};

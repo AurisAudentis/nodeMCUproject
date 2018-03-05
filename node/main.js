@@ -51,11 +51,7 @@ function readServerMessages(){
 }
 
 function reset(){
-    datab.schemaUnit.find({}, (err, units) => {
-       units.forEach((unit) => {
-           unit.remove();
-       })
-    });
+    datab.reset();
 }
 
 

@@ -79,4 +79,9 @@ router.get("/raw", (req, res) => {
 
     });
 });
+
+
+router.get("/reset", (req, res) => {
+   datab.reset();
+});
 module.exports = router;
