@@ -5,7 +5,7 @@ This project is aimed at unifying the architectural and digital world, by using 
 structure to be directly modelled on the computer, and also respond to any input a person might give.
 
 
-###MVC
+### MVC
 To facilitate this, the project is built following an MVC paradigm:
 We use the NodeDEV arduino board units to form the controller by having these nodes collect info about their surroundings (neighbors, sensors, actions taken...) and communicate this to the server.
 In this way, the server gets to know about all actions taken, and can respond accordingly. These nodes also have the ability to respond at command of the server, by
