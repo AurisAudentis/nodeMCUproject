@@ -3,10 +3,10 @@ let angle = .05;
 distanceX = [0.,40.,40.,0.,0.,-40.,-40.,0.];
 distanceY = [40.,0.,0.,40.,-40.,0.,0.,-40.];
 distanceZ = [28.284271,28.284271,-28.284271,-28.284271,28.284271,28.284271,-28.284271,-28.284271];
-//const byte interruptPin[] = {13,12,14,2,0,4,15,16}; //D7 - D6 - D5- D4 - D3 - D2 - D8 - D0
+inverse = [4,5,6,7,0,1,2,3]; // D1-D6; D2-D7; D3-D8; D4-D5;
 
 
-window.setInterval(getResources, 1000);
+window.setInterval(getResources, 3000);
 
 function setup() {
    createCanvas($(window).width(), $(window).height(), WEBGL);
@@ -51,13 +51,30 @@ function getResources(){
                    }
                });
            };
+
            obj.sharePos = function(x,y,z, id){
                if(this.x === null) {
                    let index = this.surrounding.indexOf(id);
+                   let neighbor = getObjByID(id).surrounding.indexOf(this.id);
+                   while(inverse[index] !== neighbor){
+                       this.turnSurroundingOne();
+                       index = this.surrounding.indexOf(id);
+                   }
                    this.array = [distanceX[index], distanceY[index], distanceZ[index]];
                    this.startUp(x + this.array[0], y+this.array[1], z+this.array[2]);
                }
                };
+
+           obj.turnSurroundingOne = function(){
+            console.log(this.surrounding);
+             let last = this.surrounding[0];
+             for(let i = 0; i < this.surrounding.length - 1; i++){
+                 this.surrounding[i] = this.surrounding[i+1];
+             }
+             this.surrounding[this.surrounding.length - 1] = last;
+            console.log(this.surrounding);
+           };
+
 
            return obj
        });
