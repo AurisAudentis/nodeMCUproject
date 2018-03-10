@@ -41,23 +41,24 @@ function getResources(){
            obj.y=null;
            obj.z=null;
 
-           obj.sharePos = function(x,y,z, id){
-               if(this.x === null) {
-                   let index = this.surrounding.indexOf(id);
-                   this.array = [distanceX[index], distanceY[index], distanceZ[index]];
-                   startUp(x + array[0], y+array[1], z+array[2]);
-               }
-               };
            obj.startUp = function(x,y,z){
-             this.x = x;
-             this.y = y;
-             this.z = z;
+               this.x = x;
+               this.y = y;
+               this.z = z;
                this.surrounding.forEach((id) => {
                    if (id !== 0) {
                        getObjByID(id).sharePos(this.x, this.y, this.z, this.id);
                    }
                });
            };
+           obj.sharePos = function(x,y,z, id){
+               if(this.x === null) {
+                   let index = this.surrounding.indexOf(id);
+                   this.array = [distanceX[index], distanceY[index], distanceZ[index]];
+                   this.startUp(x + this.array[0], y+this.array[1], z+this.array[2]);
+               }
+               };
+
            return obj
        });
        calcRelPositions();
@@ -66,7 +67,6 @@ function getResources(){
 
 function calcRelPositions(){
     units[0].startUp(0,0,0);
-   // console.log(units);
 }
 
 function getObjByID(id){
