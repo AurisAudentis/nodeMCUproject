@@ -1,8 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-//ID of this node. This will be sent.
-
 //for wifi setup
 const char* ssid = "OpenWifi";
 const char* password = "discreteA";
@@ -32,7 +30,6 @@ void setup() {
   pinMode(OutPin, OUTPUT); //set pin mode to input for interruptPin (13/D7)
 
   Serial.println("started"); //output "started" to serial communication
-  //This sets up the wifi connection.
   delay(600);
 
 
@@ -63,6 +60,12 @@ void loop() {
       }
     }
   declareToServ();
+
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    wifiSetup();
+  }
   
 }
 
