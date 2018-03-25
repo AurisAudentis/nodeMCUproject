@@ -1,0 +1,10 @@
+[Child 8263, MediaPlayback #1] WARNING: Decoder=7ff23f2b7800 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<mozilla::MozPromise<RefPtr<mozilla::MediaTrackDemuxer::SamplesHolder>, mozilla::MediaResult, true> > mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /build/firefox-GBiM4z/firefox-58.0.2+linuxmint1+sylvia/dom/media/MediaDecoderStateMachine.cpp, line 3365
+[Parent 8058, Gecko_IOThread] WARNING: pipe error: Broken pipe: file /build/firefox-GBiM4z/firefox-58.0.2+linuxmint1+sylvia/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 709
+ATTENTION: default value of option force_s3tc_enable overridden by environment.
+[Parent 8058, Gecko_IOThread] WARNING: pipe error: Broken pipe: file /build/firefox-GBiM4z/firefox-58.0.2+linuxmint1+sylvia/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 709
+[Parent 8058, Gecko_IOThread] WARNING: pipe error: Broken pipe: file /build/firefox-GBiM4z/firefox-58.0.2+linuxmint1+sylvia/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 709
+[Parent 8058, Gecko_IOThread] WARNING: pipe error: Broken pipe: file /build/firefox-GBiM4z/firefox-58.0.2+linuxmint1+sylvia/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 709
+[Parent 8058, Gecko_IOThread] WARNING: pipe error: Broken pipe: file /build/firefox-GBiM4z/firefox-58.0.2+linuxmint1+sylvia/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 709
+[Parent 8058, Gecko_IOThread] WARNING: pipe error (105): Connection reset by peer: file /build/firefox-GBiM4z/firefox-58.0.2+linuxmint1+sylvia/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+
+** (firefox:8058): WARNING **: Cannot launch default application: No application is registered as handling this file

@@ -12,6 +12,11 @@ const messageSchema = mongoose.Schema({
     message : String,
     isread : Boolean
 });
+const idSchema = mongoose.Schema({
+    id : Number,
+    type: Number
+});
+
 let unitModel = mongoose.model('Unit', nodeMCUSchema);
 let messageModel = mongoose.model('Message', messageSchema);
 db.once('open', function(){
@@ -43,4 +48,10 @@ exports.reset = function reset(){
             unit.remove();
         })
     });
+};
+
+exports.getType = function (id){
+    idSchema.findOne({id:id}, (err, type) => {
+        return type;
+    })
 };
