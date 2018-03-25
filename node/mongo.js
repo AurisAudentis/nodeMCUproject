@@ -51,6 +51,7 @@ exports.reset = function reset(){
 };
 
 exports.getType = function (id){
-    return idSchema.findOne({id:id}).type;
-
+    idSchema.find({id:id}, (err, type) => {
+        console.log(type);
+    });
 };
