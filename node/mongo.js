@@ -19,6 +19,7 @@ const idSchema = mongoose.Schema({
 
 let unitModel = mongoose.model('Unit', nodeMCUSchema);
 let messageModel = mongoose.model('Message', messageSchema);
+let idModel = mongoose.model('types', idSchema);
 db.once('open', function(){
     console.log("Mongoose connection established.");
 });
@@ -51,7 +52,7 @@ exports.reset = function reset(){
 };
 
 exports.getType = function (id){
-    idSchema.find({id:id}, (err, type) => {
+    idModel.findOne({id:id}, (err, type) => {
         console.log(type);
     });
 };
