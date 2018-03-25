@@ -15,7 +15,9 @@ app.use("/node", router);
 
 
 setInterval(readServerMessages, 3000);
-
+setTimeout(function(){
+    console.log(datab.getType(1));
+},5000);
 
 /*
 function checkNonResponding(){
