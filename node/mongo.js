@@ -53,6 +53,8 @@ exports.reset = function reset(){
 
 exports.getType = function (id){
     idModel.find({}, (err, type) => {
+        if(err) throw err;
+        console.log(type);
         return type;
     });
 };
