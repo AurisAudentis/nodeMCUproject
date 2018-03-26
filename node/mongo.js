@@ -51,10 +51,9 @@ exports.reset = function reset(){
     });
 };
 
-exports.getType = function (id){
-    idModel.find({}, (err, type) => {
+exports.getType = function (id, callback){
+    idModel.findOne({id:id}, (err, type) => {
         if(err) throw err;
-        console.log(type);
-        return type;
+        callback(type.type)
     });
 };

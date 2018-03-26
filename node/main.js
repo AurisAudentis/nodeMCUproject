@@ -16,7 +16,9 @@ app.use("/node", router);
 
 setInterval(readServerMessages, 3000);
 setTimeout(function(){
-    datab.getType(1);
+    datab.getType(1, function(type){
+        console.log(type);
+    });
     //console.log(datab.getType(1));
 },5000);
 
