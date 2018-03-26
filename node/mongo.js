@@ -52,7 +52,7 @@ exports.reset = function reset(){
 };
 
 exports.getType = function (id){
-    idModel.find({"id":id}, (err, type) => {
+    idModel.find({}, (err, type) => {
         return type;
     });
 };
