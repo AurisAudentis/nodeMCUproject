@@ -19,7 +19,7 @@ const idSchema = mongoose.Schema({
 
 let unitModel = mongoose.model('Unit', nodeMCUSchema);
 let messageModel = mongoose.model('Message', messageSchema);
-let idModel = mongoose.model('types', idSchema);
+let idModel = mongoose.model('Types', idSchema);
 db.once('open', function(){
     console.log("Mongoose connection established.");
 });
